@@ -1,4 +1,5 @@
-import css from "./page.module.scss"
+import Link from "next/link";
+import css from "./page.module.scss";
 type Movie = {
   id: number;
   original_title: string;
@@ -11,6 +12,10 @@ async function fetchData() {
   const data = await res.json();
   return data;
 }
+export const metadata = {
+  title: " Home | Next Movies",
+  description: "영화 홈페이지 입니다.",
+};
 
 export default async function Home() {
   const data = await fetchData();
@@ -18,32 +23,21 @@ export default async function Home() {
     <div className={css.container}>
       {!data.results && <h4>Loading...</h4>}
       {data.results?.map((movie: Movie) => (
-        <div className={css.movie}key={movie.id}>
-          <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
-          <h4>{movie.original_title}</h4>
-        </div>
+        <Link
+          className={css.link}
+          href={{
+            pathname: `/movies/${movie.id}`,
+            query: {
+              title: movie.original_title,
+            },
+          }}
+        >
+          <div className={css.movie} key={movie.id}>
+            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
+            <h4>{movie.original_title}</h4>
+          </div>
+        </Link>
       ))}
-      {/* <style jsx>{`
-        .container {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          padding: 20px;
-          gap: 20px;
-        }
-        .movie img {
-          max-width: 100%;
-          border-radius: 12px;
-          transition: transform 0.2s ease-in-out;
-          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-        }
-        .movie:hover img {
-          transform: scale(1.05) translateY(-10px);
-        }
-        .movie h4 {
-          font-size: 18px;
-          text-align: center;
-        }
-      `}</style> */}
     </div>
   );
 }
