@@ -29,6 +29,7 @@ export default async function Home() {
             pathname: `/movies/${movie.id}`,
             query: {
               title: movie.original_title,
+              image: movie.poster_path
             },
           }}
         >
