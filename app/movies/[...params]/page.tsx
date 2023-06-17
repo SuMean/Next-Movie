@@ -15,7 +15,7 @@ export default function Detail() {
       <style jsx>
         {`
           .container {
-            padding:20px;
+            padding: 20px;
             text-align: center;
           }
           .img {
