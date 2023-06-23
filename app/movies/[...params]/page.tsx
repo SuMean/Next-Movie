@@ -12,7 +12,7 @@ export default function Detail() {
         className="img"
       ></img>
       <h4>{title || "Loading..."}</h4>
-      <p>영화 설명 입니다!!</p>
+      <p>영화 설명부분 입니다!!</p>
       <style jsx>
         {`
           .container {
