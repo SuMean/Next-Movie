@@ -7,7 +7,9 @@ export default function Navbar() {
   const pathname = usePathname();
   return (
     <nav>
+      <Link href="/" legacyBehavior>
         <img src="/vercel.svg" />
+      </Link>
       <div>
         <Link href="/" legacyBehavior>
           <a className={pathname === "/" ? "active" : ""}>Home</a>
@@ -33,6 +35,7 @@ export default function Navbar() {
         img {
           max-width: 100px;
           margin-bottom: 5px;
+          cursor: pointer;
         }
         nav a {
           font-weight: 600;
